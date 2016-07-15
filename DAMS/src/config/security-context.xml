@@ -19,8 +19,8 @@
 		<security:form-login login-page="/login"
 			password-parameter="password" username-parameter="username" />
 		<security:intercept-url pattern="/resources/**" access="permitAll" />
-		<security:intercept-url pattern="/" access="permitAll" />
-		<security:intercept-url pattern="/login" access="permitAll" />
+		<security:intercept-url pattern="/**" access="permitAll" />
+		<!-- <security:intercept-url pattern="/login" access="permitAll" />
 		<security:intercept-url pattern="/registerDoctor" access="permitAll" />
 		<security:intercept-url pattern="/doRegisterDoctor" access="permitAll" />
 		<security:intercept-url pattern="/admin/**" access="permitAll" />
@@ -38,7 +38,7 @@
 		<security:intercept-url pattern="/doRegisterInstitute" access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/registerSpecializedSection" access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/doRegisterSpecializedSection" access="hasRole('ROLE_ADMIN')" />
-		<security:intercept-url pattern="/**" access="denyAll" />
+		<security:intercept-url pattern="/**" access="denyAll" /> -->
 	</security:http>
 	
 	<bean id="passwordEncoder"

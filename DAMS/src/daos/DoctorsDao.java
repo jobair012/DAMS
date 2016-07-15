@@ -1,9 +1,14 @@
 package daos;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -94,5 +99,18 @@ public class DoctorsDao {
 		}
 
 		return false;
+	}
+	
+	public List<String> getAllDoctorsName(String term){
+		
+		String sql = "SELECT name fROM doctors WHERE name LIKE '" +term+ "%'";
+		
+		return jdbcTemplate.query(sql,  new RowMapper<String>(){
+
+			@Override
+			public String mapRow(ResultSet resultSet, int row) throws SQLException {
+				
+				return resultSet.getString("name");
+			}});
 	}
 }

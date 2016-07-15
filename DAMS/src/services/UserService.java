@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import daos.UserDao;
 
-
 @Service
 public class UserService {
 
