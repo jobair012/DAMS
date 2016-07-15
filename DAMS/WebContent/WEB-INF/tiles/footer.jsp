@@ -74,3 +74,5 @@
 <script src="${pageContext.request.contextPath}/resources/js/animate.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/owl-carousel/owl.carousel.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/dams_scripts.js"></script>

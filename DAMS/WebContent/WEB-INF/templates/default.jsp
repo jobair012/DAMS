@@ -17,6 +17,7 @@
 <link href="${pageContext.request.contextPath}/resources/css/flexslider.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath}/resources/js/owl-carousel/owl.carousel.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/css/jquery-ui.css" rel="stylesheet" />
 
 <title><tiles:getAsString name="title" /></title>
 </head>
