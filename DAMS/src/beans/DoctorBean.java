@@ -10,41 +10,47 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class DoctorBean {
-	
+
 	@NotBlank
 	private String name;
-	
+
 	@NotBlank
 	private String title;
-	
+
 	@NotBlank
 	private String speciality;
-	
+
 	@NotEmpty
 	private String gender;
-	
-	@DateTimeFormat(pattern="yyyy/mm/dd")
+
+	@DateTimeFormat(pattern = "yyyy/mm/dd")
 	private Date dateOfBirth;
-	
+
 	@NotBlank
 	private String nationalId;
-	
+
 	@NotBlank
 	private String doctorsRegistrationNumber;
-	
+
 	@NotBlank
 	private String contactNumber;
-	
+
+	@NotBlank
+	private String fullAddress;
+
+	@NotBlank
+	private String area;
+
 	@Email
 	@NotBlank
 	private String email;
-	
+
 	@NotBlank
 	private String username;
-	
-	@Size(min=4, max= 15)
+
+	@Size(min = 4, max = 15)
 	private String password;
-	
+
 	private boolean enabled;
 	private String role;
 
@@ -52,8 +58,8 @@ public class DoctorBean {
 	}
 
 	public DoctorBean(String name, String title, String speciality, String gender, Date dateOfBirth, String nationalId,
-			String doctorsRegistrationNumber, String contactNumber, String email, String username, String password,
-			boolean enabled, String role) {
+			String doctorsRegistrationNumber, String contactNumber, String fullAddress, String area, String email,
+			String username, String password, boolean enabled, String role) {
 		this.name = name;
 		this.title = title;
 		this.speciality = speciality;
@@ -62,11 +68,29 @@ public class DoctorBean {
 		this.nationalId = nationalId;
 		this.doctorsRegistrationNumber = doctorsRegistrationNumber;
 		this.contactNumber = contactNumber;
+		this.fullAddress = fullAddress;
+		this.area = area;
 		this.email = email;
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
 		this.role = role;
+	}
+
+	public String getFullAddress() {
+		return fullAddress;
+	}
+
+	public void setFullAddress(String fullAddress) {
+		this.fullAddress = fullAddress;
+	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
 	}
 
 	public String getName() {
