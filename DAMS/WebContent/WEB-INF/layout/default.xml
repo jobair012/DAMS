@@ -13,4 +13,28 @@
 	<definition name="landingPage" extends="dams.base" >
 		<put-attribute name="content" value="/WEB-INF/tiles/landingPageContent.jsp" />
 	</definition>
+	
+	<definition name="searchedDoctors" extends="dams.base">
+		<put-attribute name="title" value="DAMS - Searched Doctors" />
+		
+		<put-attribute name="content" value="/WEB-INF/tiles/searchedDoctors.jsp" />
+	</definition>
+	
+	<definition name="allDoctors" extends="dams.base">
+		<put-attribute name="title" value="DAMS - All Doctors" />
+		
+		<put-attribute name="content" value="/WEB-INF/tiles/searchedDoctors.jsp" />
+	</definition>
+	
+	<definition name="doctorRegistrationForm" extends="dams.base">
+		<put-attribute name="title" value="DAMS - Doctor Registration Form" />
+		
+		<put-attribute name="content" value="/WEB-INF/tiles/doctorRegistrationForm.jsp" />
+	</definition>
+	
+	<definition name="login" extends="dams.base">
+		<put-attribute name="title" value="DAMS - Login Form" />
+		
+		<put-attribute name="content" value="/WEB-INF/tiles/login.jsp" />
+	</definition>
 </tiles-definitions>
