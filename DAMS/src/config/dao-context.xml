@@ -17,7 +17,7 @@
 		<property name="url" value="jdbc:mysql://localhost:3306/DAMS_DB">
 		</property>
 		<property name="username" value="root"></property>
-		<property name="password" value="cse-1133"></property>
+		<!-- <property name="password" value="cse-1133"></property> -->
 	</bean>
 	
 	<tx:annotation-driven />

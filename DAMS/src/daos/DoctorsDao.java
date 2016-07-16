@@ -39,8 +39,8 @@ public class DoctorsDao {
 		String sqlForUsers = "INSERT INTO users(username, password, role, enabled) VALUES(?, ?, ?,?)";
 		jdbcTemplate.update(sqlForUsers, doctor.getUsername(), encodedPassword, doctor.getRole(), doctor.isEnabled());
 
-		String sqlForDoctors = "INSERT INTO doctors(contactNumber, dateOfBirth, doctorsRegistrationNumber, email, gender, name, nationalId, specializedSection_speciality, title, username) VALUES(?, ?, ?, ?, ?,?, ?, ?, ?, ?)";
-		jdbcTemplate.update(sqlForDoctors, doctor.getContactNumber(), doctor.getDateOfBirth(),
+		String sqlForDoctors = "INSERT INTO doctors(fullAddress, area, contactNumber, dateOfBirth, doctorsRegistrationNumber, email, gender, name, nationalId, specializedSection_speciality, title, username) VALUES(?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sqlForDoctors, doctor.getFullAddress(), doctor.getArea(), doctor.getContactNumber(), doctor.getDateOfBirth(),
 				doctor.getDoctorsRegistrationNumber(), doctor.getEmail(), doctor.getGender(), doctor.getName(),
 				doctor.getNationalId(), doctor.getSpeciality(), doctor.getTitle(), doctor.getUsername());
 	}
@@ -103,7 +103,7 @@ public class DoctorsDao {
 	
 	public List<String> getAllDoctorsName(String term){
 		
-		String sql = "SELECT name fROM doctors WHERE name LIKE '" +term+ "%'";
+		String sql = "SELECT name FROM doctors WHERE name LIKE '" +term+ "%'";
 		
 		return jdbcTemplate.query(sql,  new RowMapper<String>(){
 
@@ -112,5 +112,67 @@ public class DoctorsDao {
 				
 				return resultSet.getString("name");
 			}});
+	}
+
+	public List<DoctorBean> getAllDoctors(String doctorsName, String area, String specializedSection, String gender) {
+		
+		String sql = "SELECT * FROM doctors WHERE name = '" +doctorsName+ "' OR specializedSection_speciality = '" +specializedSection+ "' OR gender = '" +gender+ "' OR area = '"+area+"'";
+				
+		return jdbcTemplate.query(sql, new RowMapper<DoctorBean>(){
+
+			@Override
+			public DoctorBean mapRow(ResultSet resultSet, int row) throws SQLException {
+				
+				DoctorBean doctor = new DoctorBean();
+
+				doctor.setUsername(resultSet.getString("username"));
+				doctor.setName(resultSet.getString("name"));
+				doctor.setEmail(resultSet.getString("email"));
+				doctor.setGender(resultSet.getString("gender"));
+				doctor.setTitle(resultSet.getString("title"));
+				doctor.setSpeciality(resultSet.getString("specializedSection_speciality"));
+				doctor.setDateOfBirth(resultSet.getDate("dateOfBirth"));
+				doctor.setDoctorsRegistrationNumber(resultSet.getString("doctorsRegistrationNumber"));
+				doctor.setNationalId(resultSet.getString("nationalId"));
+				doctor.setContactNumber(resultSet.getString("contactNumber"));
+				doctor.setFullAddress(resultSet.getString("fullAddress"));
+				doctor.setArea(resultSet.getString("area"));
+
+				return doctor;
+			}
+			
+			
+		});
+	}
+	
+public List<DoctorBean> getAllDoctors() {
+		
+		String sql = "SELECT * FROM doctors";
+				
+		return jdbcTemplate.query(sql, new RowMapper<DoctorBean>(){
+
+			@Override
+			public DoctorBean mapRow(ResultSet resultSet, int row) throws SQLException {
+				
+				DoctorBean doctor = new DoctorBean();
+
+				doctor.setUsername(resultSet.getString("username"));
+				doctor.setName(resultSet.getString("name"));
+				doctor.setEmail(resultSet.getString("email"));
+				doctor.setGender(resultSet.getString("gender"));
+				doctor.setTitle(resultSet.getString("title"));
+				doctor.setSpeciality(resultSet.getString("specializedSection_speciality"));
+				doctor.setDateOfBirth(resultSet.getDate("dateOfBirth"));
+				doctor.setDoctorsRegistrationNumber(resultSet.getString("doctorsRegistrationNumber"));
+				doctor.setNationalId(resultSet.getString("nationalId"));
+				doctor.setContactNumber(resultSet.getString("contactNumber"));
+				doctor.setFullAddress(resultSet.getString("fullAddress"));
+				doctor.setArea(resultSet.getString("area"));
+
+				return doctor;
+			}
+			
+			
+		});
 	}
 }

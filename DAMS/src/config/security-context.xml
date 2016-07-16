@@ -20,6 +20,7 @@
 			password-parameter="password" username-parameter="username" />
 		<security:intercept-url pattern="/resources/**" access="permitAll" />
 		<security:intercept-url pattern="/**" access="permitAll" />
+		<security:intercept-url pattern="/search/**" access="permitAll" />
 		<!-- <security:intercept-url pattern="/login" access="permitAll" />
 		<security:intercept-url pattern="/registerDoctor" access="permitAll" />
 		<security:intercept-url pattern="/doRegisterDoctor" access="permitAll" />

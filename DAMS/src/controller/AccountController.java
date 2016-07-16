@@ -17,6 +17,7 @@ import beans.AdminBean;
 import beans.DoctorBean;
 import services.AdminService;
 import services.DoctorService;
+import services.SearchService;
 import services.UserService;
 
 
@@ -31,11 +32,14 @@ public class AccountController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private SearchService searchService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView showLoginPage() {
 
-		ModelAndView model = new ModelAndView("loginPage");
+		ModelAndView model = new ModelAndView("login");
 
 		return model;
 	}
@@ -89,7 +93,7 @@ public class AccountController {
 	@RequestMapping(value = "/registerDoctor", method = RequestMethod.GET)
 	public ModelAndView showDoctorRegistrationForm() {
 
-		ModelAndView model = new ModelAndView("doctorRegistrationFormPage");
+		ModelAndView model = new ModelAndView("doctorRegistrationForm");
 
 		model.addObject("doctor", new DoctorBean());
 
@@ -101,6 +105,8 @@ public class AccountController {
 		model.addObject("genderList", genderList);
 
 		model.addObject("specialityList", doctorService.getAllSpecializedSection());
+		
+		model.addObject("areaList", searchService.getAllArea());
 
 		return model;
 	}
@@ -112,7 +118,7 @@ public class AccountController {
 
 		if (result.hasErrors()) {
 
-			ModelAndView model1 = new ModelAndView("doctorRegistrationFormPage");
+			ModelAndView model1 = new ModelAndView("doctorRegistrationForm");
 
 			List<String> genderList = new ArrayList<String>();
 
@@ -122,6 +128,8 @@ public class AccountController {
 			model1.addObject("genderList", genderList);
 
 			model1.addObject("specialityList", doctorService.getAllSpecializedSection());
+			
+			model1.addObject("areaList", searchService.getAllArea());
 
 			return model1;
 		}
@@ -141,7 +149,7 @@ public class AccountController {
 
 			doctorService.createDoctor(doctor);
 		} else {
-			ModelAndView model2 = new ModelAndView("doctorRegistrationFormPage");
+			ModelAndView model2 = new ModelAndView("doctorRegistrationForm");
 
 			List<String> genderList = new ArrayList<String>();
 
@@ -150,6 +158,7 @@ public class AccountController {
 
 			model2.addObject("genderList", genderList);
 			model2.addObject("specialityList", doctorService.getAllSpecializedSection());
+			model2.addObject("areaList", searchService.getAllArea());
 
 			if (isUserExists == true) {
 				result.rejectValue("username", "duplicateUsername", "Username already exists");
