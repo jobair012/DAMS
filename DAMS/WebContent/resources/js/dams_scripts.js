@@ -1,3 +1,13 @@
+/* * * * * * Logout function * * * * * */
+function formSubmit() {
+	document.getElementById("logoutForm").submit();
+}
+
+/* * * * * * Date Picker Code * * * * * */
+$(document).ready(function() {
+    $("#datepicker").datepicker({ dateFormat: 'yy/mm/dd'} );
+  });
+
 /*$(document).ready(function(){
 	$(function() {		
 		$("#doctorsName").autocomplete({

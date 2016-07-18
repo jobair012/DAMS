@@ -37,4 +37,10 @@
 		
 		<put-attribute name="content" value="/WEB-INF/tiles/login.jsp" />
 	</definition>
+	
+	<definition name="doctorsProfile" extends="dams.base">
+		<put-attribute name="title" value="DAMS - Doctors Profile" />
+		
+		<put-attribute name="content" value="/WEB-INF/tiles/doctorsProfile.jsp" />
+	</definition>
 </tiles-definitions>

@@ -7,13 +7,16 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import beans.DoctorBean;
+import beans.PhotoBean;
 
 
 @Component
@@ -117,7 +120,10 @@ public class DoctorsDao {
 	public List<DoctorBean> getAllDoctors(String doctorsName, String area, String specializedSection, String gender) {
 		
 		String sql = "SELECT * FROM doctors WHERE name = '" +doctorsName+ "' OR specializedSection_speciality = '" +specializedSection+ "' OR gender = '" +gender+ "' OR area = '"+area+"'";
-				
+		
+//		String sql = "SELECT * FROM doctors WHERE name LIKE '%" +doctorsName+ "%' OR specializedSection_speciality = '" +specializedSection+ "' OR gender = '" +gender+ "' OR area = '"+area+"'";
+//		System.out.println(sql);
+		
 		return jdbcTemplate.query(sql, new RowMapper<DoctorBean>(){
 
 			@Override
@@ -175,4 +181,81 @@ public List<DoctorBean> getAllDoctors() {
 			
 		});
 	}
+
+public void saveOrUpdateImage(String imageUrl, String username) {
+	
+	String sql = "INSERT INTO photos (username, photoUrl) VALUES (?, ?)";
+	
+	jdbcTemplate.update(sql, username, imageUrl);
+}
+
+public String getPhotoUrl(String username) {
+	
+	String sql = "SELECT photoUrl FROM photos WHERE username = '" +username+ "' ORDER BY photoId DESC";
+	
+	System.out.println(sql);
+	
+	//String sql = "SELECT photoUrl FROM photos WHERE username = '" +username+ "'";
+	
+	return jdbcTemplate.query(sql, new ResultSetExtractor<String>(){
+
+		@Override
+		public String extractData(ResultSet resultSet) throws SQLException, DataAccessException {
+			
+			if(resultSet.next()){
+				
+		//	PhotoBean photo = new PhotoBean();
+			
+//			photo.setPhotoId(resultSet.getInt("photoId"));
+	//		photo.setPhotoUrl(resultSet.getString("photoUrl"));
+			
+			return resultSet.getString("photoUrl");
+			}
+			
+			else {
+				return null;
+			}
+		}
+		
+		
+	});
+}
+
+public DoctorBean getDetailsOfParticularDoctor(String username) {
+	
+	String sql = "SELECT * FROM doctors WHERE username = '" +username+ "'";
+	
+	return jdbcTemplate.query(sql, new ResultSetExtractor<DoctorBean>(){
+
+		@Override
+		public DoctorBean extractData(ResultSet resultSet) throws SQLException, DataAccessException {
+			
+			if(resultSet.next()){
+				DoctorBean doctor = new DoctorBean();
+
+				doctor.setUsername(resultSet.getString("username"));
+				doctor.setName(resultSet.getString("name"));
+				doctor.setEmail(resultSet.getString("email"));
+				doctor.setGender(resultSet.getString("gender"));
+				doctor.setTitle(resultSet.getString("title"));
+				doctor.setSpeciality(resultSet.getString("specializedSection_speciality"));
+				doctor.setDateOfBirth(resultSet.getDate("dateOfBirth"));
+				doctor.setDoctorsRegistrationNumber(resultSet.getString("doctorsRegistrationNumber"));
+				doctor.setNationalId(resultSet.getString("nationalId"));
+				doctor.setContactNumber(resultSet.getString("contactNumber"));
+				doctor.setFullAddress(resultSet.getString("fullAddress"));
+				doctor.setArea(resultSet.getString("area"));
+
+				return doctor;
+			}
+			
+			else{
+				return null;
+			}
+		}
+		
+	});
+}
+
+
 }

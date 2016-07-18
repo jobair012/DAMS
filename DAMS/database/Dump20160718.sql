@@ -124,7 +124,7 @@ CREATE TABLE `area` (
 
 LOCK TABLES `area` WRITE;
 /*!40000 ALTER TABLE `area` DISABLE KEYS */;
-INSERT INTO `area` VALUES ('Chittagong'),('Dhaka'),('Narshingdi');
+INSERT INTO `area` VALUES ('chittagon'),('dhaka'),('narshingdi');
 /*!40000 ALTER TABLE `area` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,7 +231,7 @@ CREATE TABLE `doctors` (
 
 LOCK TABLES `doctors` WRITE;
 /*!40000 ALTER TABLE `doctors` DISABLE KEYS */;
-INSERT INTO `doctors` VALUES ('jobair012','jobair012@gmail.com','Jobair Hossain','male','85746566789','1993-01-08','0998876756678','78656789','Dr.',NULL,'Medicine','161/7, Middle Paikpara, Tajlane, Mirpur, Dhaka - 1216','Dhaka');
+INSERT INTO `doctors` VALUES ('jobair012','jobair012@gmail.com','Md. Jobair Hossain','male','42342345234','1993-01-08','42345234','23452345','Dr.',NULL,'medicine','161/7, middle paikpara, mirpur, dhaka - 1216','dhaka'),('surovi012','surovi012@gmail.com','Farah Rahman Surovi','female','9398989090','2016-01-03','0-980808-09','0908-098-09','Dr.',NULL,'cardiac','North Badda','narshingdi');
 /*!40000 ALTER TABLE `doctors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -383,6 +383,31 @@ LOCK TABLES `patients` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `photos`
+--
+
+DROP TABLE IF EXISTS `photos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `photos` (
+  `photoId` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(45) NOT NULL,
+  `photoUrl` mediumtext NOT NULL,
+  PRIMARY KEY (`photoId`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `photos`
+--
+
+LOCK TABLES `photos` WRITE;
+/*!40000 ALTER TABLE `photos` DISABLE KEYS */;
+INSERT INTO `photos` VALUES (1,'jobair012','C:/Users/Mohammad/Desktop/photo/x354-q80.jpg'),(2,'asdf','asdfasdfa'),(3,'jobair012','C:/Users/Mohammad/Desktop/photo/setup.png'),(4,'jobair012','C:/Users/Mohammad/Desktop/photo/leave.png'),(5,'jobair012','C:/Users/Mohammad/Desktop/photo/Tops and kurties.jpeg'),(6,'jobair012','C:/Users/Mohammad/Desktop/photo/Tops and kurties.jpeg'),(7,'jobair012','C:/Users/Mohammad/Desktop/photo/Tops and kurties.jpeg'),(8,'jobair012','C:/Users/Mohammad/Desktop/photo/653311.jpeg'),(9,'jobair012','C:/Users/Mohammad/Desktop/photo/653311.jpeg'),(10,'jobair012','C://Users/Mohammad/Desktop/photo/653311.jpeg'),(11,'jobair012','leave.png'),(12,'jobair012','leave.png'),(13,'jobair012','baronial-off-white-and-black-resham-work-anarkali-suit-800x1100.jpg'),(14,'surovi012','IMG_7532.JPG');
+/*!40000 ALTER TABLE `photos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `specializedsection`
 --
 
@@ -401,7 +426,7 @@ CREATE TABLE `specializedsection` (
 
 LOCK TABLES `specializedsection` WRITE;
 /*!40000 ALTER TABLE `specializedsection` DISABLE KEYS */;
-INSERT INTO `specializedsection` VALUES ('Cardiac'),('Diabatelogy'),('Medicine');
+INSERT INTO `specializedsection` VALUES ('cardiac'),('diabatelogy'),('medicine');
 /*!40000 ALTER TABLE `specializedsection` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -427,7 +452,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('jobair012','408f9f8e406bc07caead4399ff80ff19c3a3edf37cf620bb00dbc9e16b9b6f7f3ce8156b686b394d','ROLE_DOCTOR',0);
+INSERT INTO `users` VALUES ('jobair012','b9d9f3acfb6a68fc78cb2077a6e888730714d660e9a9339117af27185ba68578720421b9835457b9','ROLE_DOCTOR',1),('surovi012','78947b218861bb967380a3fd7c0414c79e3b889002f3942ab037bb1b0cf97f6c5d56a85ffffad588','ROLE_DOCTOR',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -440,4 +465,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-17  2:48:40
+-- Dump completed on 2016-07-18 23:31:22

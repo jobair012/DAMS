@@ -49,4 +49,19 @@ public class DoctorService {
 		
 		return doctorsDAO.isDoctorsRegistrationNumberExists(doctorsRegistrationNumber);
 	}
+
+	public void saveOrUpdatePhoto(String imageUrl, String username) {
+		
+		doctorsDAO.saveOrUpdateImage(imageUrl, username);
+	}
+
+	public String getPhotoUrl(String username) {
+		
+		return doctorsDAO.getPhotoUrl(username);
+	}
+
+	public DoctorBean getDetailsOfParticularDoctor(String username) {
+		
+		return doctorsDAO.getDetailsOfParticularDoctor(username);
+	}
 }
