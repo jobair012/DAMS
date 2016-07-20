@@ -19,7 +19,7 @@
 			<c:forEach items="${appointmentList}" var="appointment">
 				<tr>
 					<form:form action="${pageContext.request.contextPath}/appointment/approaveAppointment" commandName="aptmnt" method="post">
-					<form:hidden path="appointmentId"/>
+					<form:hidden path="appointmentId" value="${appointment.appointmentId}"/>
 					<td>
 						<form:input path="" type="text" disabled="disabled" readonly="true" value="${appointment.patients_username}"/>
 					</td>
@@ -33,10 +33,14 @@
 						<form:input path="" type="text" disabled="disabled" readonly="true" value="${appointment.description}"/>
 					</td>							
 					<td>
-						<form:input path="" type="text" id="datepicker" />
+						<form:input path="welcomeDate" type="text" id="datepicker" />
 					</td>
 					<td>
-						<form:input path="" type="text" name="status" />
+						<form:select path="status">
+							<form:option value="${appointment.status}"></form:option>
+							<form:option value="ignored"></form:option>
+							<form:option value="approved"></form:option>
+						</form:select>
 					</td>
 					<td>
 						<button>Submit</button>
