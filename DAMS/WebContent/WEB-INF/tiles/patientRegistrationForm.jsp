@@ -7,12 +7,12 @@
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<form:form class="form-horizontal"
-				action="${pageContext.request.contextPath}/doRegisterDoctor"
-				method="POST" commandName="doctor">
+				action="${pageContext.request.contextPath}/doRegisterPatient"
+				method="POST" commandName="patient">
 				<fieldset>
 
 					<!-- Form Name -->
-					<legend>Doctor Registration Form</legend>
+					<legend>Patient Registration Form</legend>
 
 					<!-- Text input-->
 					<div class="form-group">
@@ -20,30 +20,27 @@
 						<div class="col-md-8">
 							<form:input id="name" name="name" type="text" path="name"
 								class="form-control input-md" />
-							<form:errors path="name" cssClass="alert-danger"></form:errors>
+							<%-- <form:errors path="name" cssClass="alert-danger"></form:errors> --%>
 						</div>
 					</div>
 
 					<!-- Text input-->
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="name" style="color: black;">Title</label>
+						<label class="col-md-4 control-label" for="username" style="color: black;">Username</label>
 						<div class="col-md-8">
-							<form:input id="title" name="title" type="text" path="title"
-								class="form-control input-md" />
-							<form:errors path="title" cssClass="alert-danger"></form:errors>
+							<form:input id="username" name="username" type="text"
+								path="username" class="form-control input-md" />
+							<%-- <form:errors path="username" cssClass="alert-danger"></form:errors> --%>
 						</div>
 					</div>
-
-					<!-- Select Basic -->
+					
+					<!-- Text input-->
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="selectbasic" style="color: black;">Speciality</label>
+						<label class="col-md-4 control-label" for="name" style="color: black;">Email</label>
 						<div class="col-md-8">
-							<form:select id="speciality" name="speciality" path="speciality"
-								class="form-control">
-								<form:option value="" label="Select" />
-								<form:options items="${specialityList}" />
-							</form:select>
-							<form:errors path="speciality" cssClass="alert-danger"></form:errors>
+							<form:input id="email" name="email" type="email" path="email"
+								class="form-control input-md" />
+							<%-- <form:errors path="email" cssClass="alert-danger"></form:errors> --%>
 						</div>
 					</div>
 
@@ -66,7 +63,7 @@
 						<div class="col-md-8">
 							<form:input id="datepicker" name="dateOfBirtd" type="text"
 								path="dateOfBirth" class="form-control input-md" />
-							<form:errors path="dateOfBirth" cssClass="alert-danger"></form:errors>
+						<%-- 	<form:errors path="dateOfBirth" cssClass="alert-danger"></form:errors> --%>
 						</div>
 					</div>
 
@@ -77,22 +74,11 @@
 						<div class="col-md-8">
 							<form:input id="nationalId" name="nationalId" type="text"
 								path="nationalId" class="form-control input-md" />
-							<form:errors path="nationalId" cssClass="alert-danger"></form:errors>
+						<%-- 	<form:errors path="nationalId" cssClass="alert-danger"></form:errors> --%>
 						</div>
 					</div>
 
-					<!-- Text input-->
-					<div class="form-group">
-						<label class="col-md-4 control-label" for="name" style="color: black;">BMDC
-							Registration No.</label>
-						<div class="col-md-8">
-							<form:input id="doctorsRegistrationNumber"
-								name="doctorsRegistrationNumber" type="text"
-								path="doctorsRegistrationNumber" class="form-control input-md" />
-							<form:errors path="doctorsRegistrationNumber"
-								cssClass="alert-danger"></form:errors>
-						</div>
-					</div>
+					
 
 					<!-- Text input-->
 					<div class="form-group">
@@ -101,22 +87,10 @@
 						<div class="col-md-8">
 							<form:input id="contactNumber" name="contactNumber" type="text"
 								path="contactNumber" class="form-control input-md" />
-							<form:errors path="contactNumber" cssClass="alert-danger"></form:errors>
+						<%-- 	<form:errors path="contactNumber" cssClass="alert-danger"></form:errors> --%>
 						</div>
 					</div>
 					
-					<!-- Select Basic -->
-					<div class="form-group">
-						<label class="col-md-4 control-label" for="selectbasic" style="color: black;">Area</label>
-						<div class="col-md-8">
-							<form:select id="area" name="area" path="area"
-								class="form-control">
-								<form:option value="" label="Select" />
-								<form:options items="${areaList}" />
-							</form:select>
-							<form:errors path="area" cssClass="alert-danger"></form:errors>
-						</div>
-					</div>
 					
 					<!-- Text input-->
 					<div class="form-group">
@@ -124,29 +98,10 @@
 						<div class="col-md-8">
 							<form:textarea id="fulAddress" name="fullAddress"
 								path="fullAddress" class="form-control input-md" />
-							<form:errors path="fullAddress" cssClass="alert-danger"></form:errors>
+						<%-- 	<form:errors path="fullAddress" cssClass="alert-danger"></form:errors> --%>
 						</div>
 					</div>
 
-					<!-- Text input-->
-					<div class="form-group">
-						<label class="col-md-4 control-label" for="name" style="color: black;">Email</label>
-						<div class="col-md-8">
-							<form:input id="email" name="email" type="email" path="email"
-								class="form-control input-md" />
-							<form:errors path="email" cssClass="alert-danger"></form:errors>
-						</div>
-					</div>
-
-					<!-- Text input-->
-					<div class="form-group">
-						<label class="col-md-4 control-label" for="username" style="color: black;">Username</label>
-						<div class="col-md-8">
-							<form:input id="username" name="username" type="text"
-								path="username" class="form-control input-md" />
-							<form:errors path="username" cssClass="alert-danger"></form:errors>
-						</div>
-					</div>
 
 					<!-- Password input-->
 					<div class="form-group">
@@ -154,7 +109,7 @@
 						<div class="col-md-8">
 							<form:input id="password" name="password" type="password"
 								path="password" class="form-control input-md" />
-							<form:errors path="password" cssClass="alert-danger"></form:errors>
+							<%-- <form:errors path="password" cssClass="alert-danger"></form:errors> --%>
 						</div>
 					</div>
 

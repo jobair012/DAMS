@@ -43,4 +43,34 @@
 		
 		<put-attribute name="content" value="/WEB-INF/tiles/doctorsProfile.jsp" />
 	</definition>
+	
+	<definition name="doctorsDetail" extends="dams.base">
+		<put-attribute name="title" value="DAMS - Doctors Detail" />
+		
+		<put-attribute name="content" value="/WEB-INF/tiles/doctorsDetail.jsp" />
+	</definition>
+	
+	<definition name="appointment" extends="dams.base">
+		<put-attribute name="title" value="DAMS - Doctors Appointment" />
+		
+		<put-attribute name="content" value="/WEB-INF/tiles/appointment.jsp" />
+	</definition>
+	
+	<definition name="patientRegistrationForm" extends="dams.base">
+		<put-attribute name="title" value="DAMS - Patient Registration Form" />
+		
+		<put-attribute name="content" value="/WEB-INF/tiles/patientRegistrationForm.jsp" />
+	</definition>
+	
+	<definition name="patientsProfile" extends="dams.base">
+		<put-attribute name="title" value="DAMS - Patients Profile" />
+		
+		<put-attribute name="content" value="/WEB-INF/tiles/patientsProfile.jsp" />
+	</definition>
+	
+	<definition name="pandingAppointments" extends="dams.base">
+		<put-attribute name="title" value="DAMS - All Pending Appointments" />
+		
+		<put-attribute name="content" value="/WEB-INF/tiles/pandingAppointments.jsp" />
+	</definition>
 </tiles-definitions>

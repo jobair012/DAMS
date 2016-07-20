@@ -25,10 +25,23 @@
 	padding: 25px;
 }
 
+.usersImage1 {
+	width: 255px;
+	border: 2px solid lightgrey;
+	float: right;
+	padding: 25px;
+}
+
 .usersImage img {
 	height: 250px;
 	width: 200px;
-	border: 2px solid orange;
+	border: 2px solid lightgrey;
+}
+
+.usersImage1 img {
+	height: 250px;
+	width: 200px;
+	border: 2px solid lightgrey;
 }
 
 #nameInBanner {
