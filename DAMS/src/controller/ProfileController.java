@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.AppointmentService;
 import services.DoctorService;
 
 @Controller
@@ -25,6 +26,9 @@ public class ProfileController {
 
 	@Autowired
 	private DoctorService doctorService;
+	
+	@Autowired
+	private AppointmentService appointmentService;
 	
 	@RequestMapping(value="", method=RequestMethod.GET)
 	public ModelAndView showProfile(Authentication authentication){
@@ -36,7 +40,7 @@ public class ProfileController {
 			return new ModelAndView("redirect:/admin");
 		}
 		if(authentication.getAuthorities().toString().equals("[ROLE_PATIENT]")){
-			return new ModelAndView("redirect:/patient");
+			return new ModelAndView("redirect:/profile/patient");
 		}
 		
 		return new ModelAndView("redirect:/");
@@ -63,9 +67,11 @@ public class ProfileController {
 	}
 	
 	@RequestMapping(value="/patient", method=RequestMethod.GET)
-	public ModelAndView showPatientsProfile(){
+	public ModelAndView showPatientsProfile(HttpServletRequest request){
 		
-		ModelAndView model = new ModelAndView("patientsProfile");		
+		ModelAndView model = new ModelAndView("patientsProfile");	
+		
+		model.addObject("appointmentList", appointmentService.getAllAppointments(request.getUserPrincipal().getName()));
 		
 		return model;
 	}
@@ -121,5 +127,19 @@ public class ProfileController {
 		return new ModelAndView("redirect:/profile/doctor");
 	}
 	
+	
+	@RequestMapping(value="/viewDetails", method=RequestMethod.GET)
+	public ModelAndView viewDetails(HttpServletRequest request){
+		
+		ModelAndView model = new ModelAndView("doctorsDetail");	
+		
+		String username = request.getParameter("username");
+		
+		model.addObject("photoUrl", doctorService.getPhotoUrl(username));
+		
+		model.addObject("doctor", doctorService.getDetailsOfParticularDoctor(username));
+		
+		return model;
+	}
 	
 }

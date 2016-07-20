@@ -51,6 +51,8 @@ public class DoctorBean {
 	@Size(min = 4, max = 15)
 	private String password;
 
+	private String photoUrl;
+
 	private boolean enabled;
 	private String role;
 
@@ -59,7 +61,7 @@ public class DoctorBean {
 
 	public DoctorBean(String name, String title, String speciality, String gender, Date dateOfBirth, String nationalId,
 			String doctorsRegistrationNumber, String contactNumber, String fullAddress, String area, String email,
-			String username, String password, boolean enabled, String role) {
+			String username, String password, String photoUrl, boolean enabled, String role) {
 		this.name = name;
 		this.title = title;
 		this.speciality = speciality;
@@ -73,24 +75,9 @@ public class DoctorBean {
 		this.email = email;
 		this.username = username;
 		this.password = password;
+		this.photoUrl = photoUrl;
 		this.enabled = enabled;
 		this.role = role;
-	}
-
-	public String getFullAddress() {
-		return fullAddress;
-	}
-
-	public void setFullAddress(String fullAddress) {
-		this.fullAddress = fullAddress;
-	}
-
-	public String getArea() {
-		return area;
-	}
-
-	public void setArea(String area) {
-		this.area = area;
 	}
 
 	public String getName() {
@@ -157,6 +144,22 @@ public class DoctorBean {
 		this.contactNumber = contactNumber;
 	}
 
+	public String getFullAddress() {
+		return fullAddress;
+	}
+
+	public void setFullAddress(String fullAddress) {
+		this.fullAddress = fullAddress;
+	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -179,6 +182,14 @@ public class DoctorBean {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getPhotoUrl() {
+		return photoUrl;
+	}
+
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
 	}
 
 	public boolean isEnabled() {

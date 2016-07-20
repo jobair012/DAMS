@@ -15,8 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import beans.AdminBean;
 import beans.DoctorBean;
+import beans.PatientBean;
 import services.AdminService;
 import services.DoctorService;
+import services.PatientService;
 import services.SearchService;
 import services.UserService;
 
@@ -29,6 +31,10 @@ public class AccountController {
 
 	@Autowired
 	private DoctorService doctorService;
+	
+	
+	@Autowired
+	private PatientService patientService;
 
 	@Autowired
 	private UserService userService;
@@ -185,5 +191,28 @@ public class AccountController {
 		}
 
 		return model;
+	}
+	
+	
+	@RequestMapping(value = "/registerPatient", method = RequestMethod.GET)
+	public ModelAndView showPatientRegistrationForm() {
+
+		ModelAndView model = new ModelAndView("patientRegistrationForm");
+
+		model.addObject("patient", new PatientBean());
+
+		return model;
+	}
+	
+	@RequestMapping(value = "/doRegisterPatient", method = RequestMethod.POST)
+	public ModelAndView doRegisterPatient(@ModelAttribute("patient")PatientBean patient) {
+
+		patient.setRole("ROLE_PATIENT");
+		patient.setEnabled(true);
+
+		patientService.savePatient(patient);
+		
+		return new ModelAndView("redirect:/login");
+		
 	}
 }
