@@ -26,7 +26,7 @@ public class AppointmentDao {
 
 	public void saveNewAppointmentRequest(AppointmentBean appointment) {
 		
-		String sql = "INSERT INTO appointment(requestedDate, expectedDate, doctors_username, patients_username, description) VALUES(?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO appointment(requestedDate, expectedDate, doctors_username, patients_username, description) VALUES(?, ?, ?, ?, ?)";
 		
 		jdbcTemplate.update(sql, appointment.getRequestedDate(), appointment.getExpectedDate(), appointment.getDoctors_username(), appointment.getPatients_username(), appointment.getDescription());
 
@@ -85,7 +85,7 @@ public class AppointmentDao {
 	public Object updateAppointments(AppointmentBean aptmnt) {
 		
 		
-		String sql = "UPDATE appointment SET status = '"+aptmnt.getStatus()+ "' AND welcomeDate = '" +aptmnt.getWelcomeDate()+ "' WHERE appointmentId = "+aptmnt.getAppointmentId();
+		String sql = "UPDATE appointment SET status = '"+aptmnt.getStatus()+ "', welcomeDate = " +aptmnt.getWelcomeDate()+ " WHERE appointmentId = "+aptmnt.getAppointmentId();
 		
 		System.out.println(sql);
 		
