@@ -87,13 +87,13 @@ CREATE TABLE `appointment` (
   `welcomeDate` date DEFAULT NULL,
   `status` varchar(45) DEFAULT 'pending',
   `doctors_username` varchar(45) NOT NULL,
-  `patients_username` int(11) NOT NULL,
+  `patients_username` varchar(45) NOT NULL,
+  `description` longtext,
   PRIMARY KEY (`appointmentId`),
   KEY `fk_appointment_doctors1_idx` (`doctors_username`),
   KEY `fk_appointment_patients1_idx` (`patients_username`),
-  CONSTRAINT `fk_appointment_doctors1` FOREIGN KEY (`doctors_username`) REFERENCES `doctors` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_appointment_patients1` FOREIGN KEY (`patients_username`) REFERENCES `patients` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_appointment_doctors1` FOREIGN KEY (`doctors_username`) REFERENCES `doctors` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,6 +102,7 @@ CREATE TABLE `appointment` (
 
 LOCK TABLES `appointment` WRITE;
 /*!40000 ALTER TABLE `appointment` DISABLE KEYS */;
+INSERT INTO `appointment` VALUES (6,NULL,'0000-00-00','0000-00-00','pending','surovi012','asd','asdfasdf'),(7,'2016-07-20','2016-07-23',NULL,'pending','jobair012','surovi012','dqweqweqwe'),(8,'2016-07-20','2016-07-15',NULL,'pending','jobair012','patient','rerewerqwe'),(9,'2016-07-20','2016-07-31',NULL,'pending','jobair012','patient','Feeling Fever');
 /*!40000 ALTER TABLE `appointment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,7 +125,7 @@ CREATE TABLE `area` (
 
 LOCK TABLES `area` WRITE;
 /*!40000 ALTER TABLE `area` DISABLE KEYS */;
-INSERT INTO `area` VALUES ('chittagon'),('dhaka'),('narshingdi');
+INSERT INTO `area` VALUES ('Dhaka'),('Kollyanpur');
 /*!40000 ALTER TABLE `area` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,7 +232,7 @@ CREATE TABLE `doctors` (
 
 LOCK TABLES `doctors` WRITE;
 /*!40000 ALTER TABLE `doctors` DISABLE KEYS */;
-INSERT INTO `doctors` VALUES ('jobair012','jobair012@gmail.com','Md. Jobair Hossain','male','42342345234','1993-01-08','42345234','23452345','Dr.',NULL,'medicine','161/7, middle paikpara, mirpur, dhaka - 1216','dhaka'),('surovi012','surovi012@gmail.com','Farah Rahman Surovi','female','9398989090','2016-01-03','0-980808-09','0908-098-09','Dr.',NULL,'cardiac','North Badda','narshingdi');
+INSERT INTO `doctors` VALUES ('jobair012','jobair012@gmail.com','Md. Jobair Hossain','male','42342345234','2016-01-21','2342342','23452345','Dr.',NULL,'Cardiology','161/7, Middle Paikpara, Mirpur, Dhaka - 1216','Kollyanpur'),('surovi012','surovi012@gmail.com','Farah Rahman Surovi','female','42342345234asdf','2016-01-12','2342342asdasdf','asdf','Dr.',NULL,'Cardiology','Badda','Dhaka');
 /*!40000 ALTER TABLE `doctors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -356,7 +357,7 @@ DROP TABLE IF EXISTS `patients`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `patients` (
-  `username` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(45) NOT NULL,
   `email` varchar(45) DEFAULT NULL,
   `name` varchar(45) DEFAULT NULL,
   `gender` varchar(45) DEFAULT NULL,
@@ -364,12 +365,11 @@ CREATE TABLE `patients` (
   `birthCertificateId` varchar(45) DEFAULT NULL,
   `dateOfBirth` date DEFAULT NULL,
   `contcatNo` varchar(45) DEFAULT NULL,
-  `address_addressId` int(11) NOT NULL,
+  `fullAddress` varchar(100) DEFAULT NULL,
+  `patientscol` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`username`),
   UNIQUE KEY `birthCertificateId_UNIQUE` (`birthCertificateId`),
-  UNIQUE KEY `nationalId_UNIQUE` (`nationalId`),
-  KEY `fk_patient_address1_idx` (`address_addressId`),
-  CONSTRAINT `fk_patient_address1` FOREIGN KEY (`address_addressId`) REFERENCES `address` (`addressId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  UNIQUE KEY `nationalId_UNIQUE` (`nationalId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -379,6 +379,7 @@ CREATE TABLE `patients` (
 
 LOCK TABLES `patients` WRITE;
 /*!40000 ALTER TABLE `patients` DISABLE KEYS */;
+INSERT INTO `patients` VALUES ('patient','patient@patient.com','Md. Jobair Hossain','male','42342345234asdf',NULL,'2016-07-14','23452345','Dhaka, Comilla, Barishal',NULL),('patient1','patient1','patient1','male','232342343','2342341234','0000-00-00','2342342342',NULL,NULL);
 /*!40000 ALTER TABLE `patients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -394,7 +395,7 @@ CREATE TABLE `photos` (
   `username` varchar(45) NOT NULL,
   `photoUrl` mediumtext NOT NULL,
   PRIMARY KEY (`photoId`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -403,7 +404,7 @@ CREATE TABLE `photos` (
 
 LOCK TABLES `photos` WRITE;
 /*!40000 ALTER TABLE `photos` DISABLE KEYS */;
-INSERT INTO `photos` VALUES (1,'jobair012','C:/Users/Mohammad/Desktop/photo/x354-q80.jpg'),(2,'asdf','asdfasdfa'),(3,'jobair012','C:/Users/Mohammad/Desktop/photo/setup.png'),(4,'jobair012','C:/Users/Mohammad/Desktop/photo/leave.png'),(5,'jobair012','C:/Users/Mohammad/Desktop/photo/Tops and kurties.jpeg'),(6,'jobair012','C:/Users/Mohammad/Desktop/photo/Tops and kurties.jpeg'),(7,'jobair012','C:/Users/Mohammad/Desktop/photo/Tops and kurties.jpeg'),(8,'jobair012','C:/Users/Mohammad/Desktop/photo/653311.jpeg'),(9,'jobair012','C:/Users/Mohammad/Desktop/photo/653311.jpeg'),(10,'jobair012','C://Users/Mohammad/Desktop/photo/653311.jpeg'),(11,'jobair012','leave.png'),(12,'jobair012','leave.png'),(13,'jobair012','baronial-off-white-and-black-resham-work-anarkali-suit-800x1100.jpg'),(14,'surovi012','IMG_7532.JPG');
+INSERT INTO `photos` VALUES (17,'jobair012','attendance.png');
 /*!40000 ALTER TABLE `photos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -426,7 +427,7 @@ CREATE TABLE `specializedsection` (
 
 LOCK TABLES `specializedsection` WRITE;
 /*!40000 ALTER TABLE `specializedsection` DISABLE KEYS */;
-INSERT INTO `specializedsection` VALUES ('cardiac'),('diabatelogy'),('medicine');
+INSERT INTO `specializedsection` VALUES ('Cardiology'),('Medicine');
 /*!40000 ALTER TABLE `specializedsection` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -452,7 +453,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('jobair012','b9d9f3acfb6a68fc78cb2077a6e888730714d660e9a9339117af27185ba68578720421b9835457b9','ROLE_DOCTOR',1),('surovi012','78947b218861bb967380a3fd7c0414c79e3b889002f3942ab037bb1b0cf97f6c5d56a85ffffad588','ROLE_DOCTOR',1);
+INSERT INTO `users` VALUES ('jobair012','95c99954bde7aab0151e88f8a75afd0d233cc6d86cea8e8a878e9d5e1eb4c1694d50c31bf0d2b59d','ROLE_DOCTOR',1),('patient','44019d34bcd21b0e8c6c24c5171828c8801e9b0ed1b6232d7c534319808290969cfc4346064e08cd','ROLE_PATIENT',1),('patient1','patient1','ROLE_PATIENT',1),('surovi012','8f704f04319e7faa02cdcd38900e170dbe04a008387106575be4af4ea6ac6cf6ca4240232095099d','ROLE_DOCTOR',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -465,4 +466,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-18 23:31:22
+-- Dump completed on 2016-07-20  6:15:59
