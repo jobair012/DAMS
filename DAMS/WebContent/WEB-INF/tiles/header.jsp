@@ -11,7 +11,7 @@
 				<c:out value="${pageContext.request.userPrincipal.name}"/>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:formSubmit()">Logout</a>
 			</c:if>
 			<c:if test="${pageContext.request.userPrincipal.name == null}">
-				<a href="${pageContext.request.contextPath}/registerDoctor">Signup</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/login">Login</a>
+				<a href="${pageContext.request.contextPath}/registerPatient">Signup as Patient</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/registerDoctor">Signup as Doctor</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/login">Login</a>
 			</c:if>		
 		</div>
 	
