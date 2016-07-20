@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import beans.DoctorBean;
-import beans.PhotoBean;
 
 
 @Component
@@ -119,11 +118,13 @@ public class DoctorsDao {
 
 	public List<DoctorBean> getAllDoctors(String doctorsName, String area, String specializedSection, String gender) {
 		
-		String sql = "SELECT * FROM doctors WHERE name = '" +doctorsName+ "' OR specializedSection_speciality = '" +specializedSection+ "' OR gender = '" +gender+ "' OR area = '"+area+"'";
+//		String sql = "SELECT * FROM doctors WHERE name = '" +doctorsName+ "' OR specializedSection_speciality = '" +specializedSection+ "' OR gender = '" +gender+ "' OR area = '"+area+"'";
 		
 //		String sql = "SELECT * FROM doctors WHERE name LIKE '%" +doctorsName+ "%' OR specializedSection_speciality = '" +specializedSection+ "' OR gender = '" +gender+ "' OR area = '"+area+"'";
 //		System.out.println(sql);
 		
+		
+		String sql = "select dr.*, pht.* from(select * from photos order by photoId desc)pht join doctors dr  using(username) WHERE name = '" +doctorsName+ "' OR specializedSection_speciality = '" +specializedSection+ "' OR gender = '" +gender+ "' OR area = '"+area+"' group by dr.username";
 		return jdbcTemplate.query(sql, new RowMapper<DoctorBean>(){
 
 			@Override
@@ -143,6 +144,7 @@ public class DoctorsDao {
 				doctor.setContactNumber(resultSet.getString("contactNumber"));
 				doctor.setFullAddress(resultSet.getString("fullAddress"));
 				doctor.setArea(resultSet.getString("area"));
+				doctor.setPhotoUrl(resultSet.getString("photoUrl"));
 
 				return doctor;
 			}
@@ -153,7 +155,7 @@ public class DoctorsDao {
 	
 public List<DoctorBean> getAllDoctors() {
 		
-		String sql = "SELECT * FROM doctors";
+		String sql = "select dr.*, pht.* from(select * from photos order by photoId desc)pht join doctors dr  using(username) group by dr.username";
 				
 		return jdbcTemplate.query(sql, new RowMapper<DoctorBean>(){
 
@@ -174,7 +176,8 @@ public List<DoctorBean> getAllDoctors() {
 				doctor.setContactNumber(resultSet.getString("contactNumber"));
 				doctor.setFullAddress(resultSet.getString("fullAddress"));
 				doctor.setArea(resultSet.getString("area"));
-
+				doctor.setPhotoUrl(resultSet.getString("photoUrl"));
+				
 				return doctor;
 			}
 			
@@ -193,7 +196,7 @@ public String getPhotoUrl(String username) {
 	
 	String sql = "SELECT photoUrl FROM photos WHERE username = '" +username+ "' ORDER BY photoId DESC";
 	
-	System.out.println(sql);
+//	System.out.println(sql);
 	
 	//String sql = "SELECT photoUrl FROM photos WHERE username = '" +username+ "'";
 	
