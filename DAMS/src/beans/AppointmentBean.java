@@ -10,7 +10,7 @@ public class AppointmentBean {
 
 	private Date expectedDate;
 
-	private Date welcomeDate;
+	private String welcomeDate;
 
 	private String status;
 
@@ -23,7 +23,7 @@ public class AppointmentBean {
 	public AppointmentBean() {
 	}
 
-	public AppointmentBean(int appointmentId, Date requestedDate, Date expectedDate, Date welcomeDate, String status,
+	public AppointmentBean(int appointmentId, Date requestedDate, Date expectedDate, String welcomeDate, String status,
 			String doctors_username, String patients_username, String description) {
 		this.appointmentId = appointmentId;
 		this.requestedDate = requestedDate;
@@ -59,11 +59,11 @@ public class AppointmentBean {
 		this.expectedDate = expectedDate;
 	}
 
-	public Date getWelcomeDate() {
+	public String getWelcomeDate() {
 		return welcomeDate;
 	}
 
-	public void setWelcomeDate(Date welcomeDate) {
+	public void setWelcomeDate(String welcomeDate) {
 		this.welcomeDate = welcomeDate;
 	}
 

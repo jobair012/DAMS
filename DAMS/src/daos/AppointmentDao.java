@@ -48,7 +48,7 @@ public class AppointmentDao {
 				appointment.setExpectedDate(resultSet.getDate("expectedDate"));
 				appointment.setRequestedDate(resultSet.getDate("requestedDate"));
 				appointment.setStatus(resultSet.getString("status"));
-				appointment.setWelcomeDate(resultSet.getDate("welcomeDate"));
+				appointment.setWelcomeDate(resultSet.getString("welcomeDate"));
 				
 				return appointment;
 			}
@@ -73,7 +73,7 @@ public class AppointmentDao {
 				appointment.setExpectedDate(resultSet.getDate("expectedDate"));
 				appointment.setRequestedDate(resultSet.getDate("requestedDate"));
 				appointment.setStatus(resultSet.getString("status"));
-				appointment.setWelcomeDate(resultSet.getDate("welcomeDate"));
+				appointment.setWelcomeDate(resultSet.getString("welcomeDate"));
 				
 				return appointment;
 			}

@@ -84,7 +84,7 @@ CREATE TABLE `appointment` (
   `appointmentId` int(11) NOT NULL AUTO_INCREMENT,
   `requestedDate` date DEFAULT NULL,
   `expectedDate` date DEFAULT NULL,
-  `welcomeDate` date DEFAULT NULL,
+  `welcomeDate` varchar(45) DEFAULT NULL,
   `status` varchar(45) DEFAULT 'pending',
   `doctors_username` varchar(45) NOT NULL,
   `patients_username` varchar(45) NOT NULL,
@@ -464,4 +464,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-20  7:14:09
+-- Dump completed on 2016-07-20  7:58:35
