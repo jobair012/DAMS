@@ -32,8 +32,8 @@
 						<li><a href="${pageContext.request.contextPath}/profile">Profile</a></li>
 					</c:if>
 					<li><a href="${pageContext.request.contextPath}/search/allDoctors">All Doctors</a></li>
-					<li><a href="services.html">About Us</a></li>
-					<li><a href="contact.html">Contact</a></li>
+					<%--<li><a href="services.html">About Us</a></li>
+					<li><a href="contact.html">Contact</a></li>--%>
 				</ul>
 			</div>
 		</div>

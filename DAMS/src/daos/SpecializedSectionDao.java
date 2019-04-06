@@ -35,7 +35,7 @@ public class SpecializedSectionDao {
 
 	public List<String> getAllSpecializedSection() {
 		
-		String sql = "SELECT speciality FROM specializedSection";
+		String sql = "SELECT speciality FROM specializedsection";
 		
 		return jdbcTemplate.query(sql, new RowMapper<String>(){
 

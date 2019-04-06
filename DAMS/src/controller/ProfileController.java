@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.lang.SystemUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -78,11 +79,18 @@ public class ProfileController {
 	
 	@RequestMapping(value="/uploadImage", method=RequestMethod.POST)
 	public ModelAndView doUploadImage(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		
-		final String uploadPath = "C://Users/Mohammad/git/DAMS/DAMS/WebContent/resources/runtimeContent/images/";
-		
+
+		String uploadPath = "";
 		String imageUrl = "", username ="";
-		
+		if(SystemUtils.IS_OS_WINDOWS) {
+//			uploadPath = "C://dams/runtimeContent/images/";
+			uploadPath = "C://Users/surovi012/Desktop/MSC_PROJECTS/apache-tomcat-8.5.35";
+		}else {
+//			uploadPath = "/home/jobair012/Development/Project/Spring/DAMS/DAMS/WebContent/resources/runtimeContent/images/";
+			uploadPath = "/home/jobair012/Desktop/MSC_PROJECTS/apache-tomcat-8.5.35";
+		}
+
+		uploadPath = uploadPath+"/webapps/ROOT/resources/runtimeContent/images/";
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		
 		if(isMultipart)

@@ -1,6 +1,6 @@
 <footer>
 	<div class="container">
-		<span>&copy;All rights reserved by Surovi &amp; Dolna</span>
+		<span>&copy;Developed by SUROVI</span>
 	</div>
 
 </footer>
